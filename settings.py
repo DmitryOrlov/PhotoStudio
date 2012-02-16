@@ -24,6 +24,22 @@ DATABASES = {
     }
 }
 
+AUTH_USER_EMAIL_UNIQUE = True
+
+EMAIL_HOST = 'localhost'
+
+EMAIL_PORT = 25
+
+EMAIL_HOST_USER = ''
+
+EMAIL_HOST_PASSWORD = ''
+
+EMAIL_USE_TLS = False
+
+DEFAULT_FROM_EMAIL = 'info@google.ru'
+
+
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -54,7 +70,7 @@ MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -124,6 +140,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
+    'uploadify',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -131,8 +149,11 @@ INSTALLED_APPS = (
     'photostudio.photo',
 )
 
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     # default template context processors
+    'django.core.context_processors.csrf',
     'django.core.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
