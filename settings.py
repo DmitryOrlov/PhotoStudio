@@ -82,6 +82,9 @@ STATIC_ROOT = ''
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+UPLOADIFY_PATH = STATIC_URL + 'js/uploadify/'
+UPLOADIFY_UPLOAD_PATH = MEDIA_ROOT
+
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
@@ -141,9 +144,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration',
-    'uploadify',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'customuseradmin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'photostudio.photo',

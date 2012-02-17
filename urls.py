@@ -1,19 +1,18 @@
 from django.conf.urls.defaults import patterns, include, url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 
 admin.autodiscover()
 
-
-
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'photostudio.views.home', name='home'),
+    url(r'^$', 'photostudio.views.home', name='home'),
     # url(r'^photostudio/', include('photostudio.foo.urls')),
 
-    url(r'^$', 'photostudio.photo.views.home', name='home'),
-    url(r'^uploadphotos/$', 'photostudio.photo.views.uploadphotos', name='upload'),
+    url(r'^uploadphotos/', include('photo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -24,6 +23,13 @@ urlpatterns = patterns('',
 
     url(r'^accounts/', include('registration.urls')),
 
-    url(r'^uploadify/', include('uploadify.urls')),
-
 )
+
+urlpatterns += staticfiles_urlpatterns()
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+            }),
+    )
